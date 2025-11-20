@@ -26,7 +26,13 @@ export default function LoginPage({ onLogin }) {
       }
     } catch (error) {
       console.error('Erro ao fazer login:', error);
-      setErro('Erro ao conectar com o servidor');
+      if (error.code === 'ECONNABORTED') {
+        setErro('Servidor demorando muito para responder. Aguarde 1 minuto e tente novamente.');
+      } else if (error.response?.status === 401) {
+        setErro('Senha incorreta');
+      } else {
+        setErro('Erro ao conectar com o servidor. O servidor pode estar acordando (aguarde 1 min).');
+      }
     } finally {
       setLoading(false);
     }

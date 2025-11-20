@@ -33,7 +33,7 @@ api.interceptors.response.use(
 );
 
 export const authAPI = {
-  login: (senha) => axios.post(`${API_BASE_URL}/login`, { senha }),
+  login: (senha) => axios.post(`${API_BASE_URL}/login`, { senha }, { timeout: 60000 }),
   logout: () => {
     localStorage.removeItem('token');
     localStorage.removeItem('userName');
