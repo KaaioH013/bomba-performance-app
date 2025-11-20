@@ -156,11 +156,11 @@ export default function VisualizarTestePage() {
                   
                   return (
                     <tr key={i}>
-                      <td className="border border-gray-300 px-4 py-2 text-center">{pressao || '-'}</td>
-                      <td className="border border-gray-300 px-4 py-2 text-center">{vazao || '-'}</td>
-                      <td className="border border-gray-300 px-4 py-2 text-center">{corrente || '-'}</td>
-                      <td className="border border-gray-300 px-4 py-2 text-center">{potenciaCV || '-'}</td>
-                      <td className="border border-gray-300 px-4 py-2 text-center">{potenciaKW || '-'}</td>
+                      <td className="border border-gray-300 px-4 py-2 text-center">{pressao ?? '-'}</td>
+                      <td className="border border-gray-300 px-4 py-2 text-center">{vazao ?? '-'}</td>
+                      <td className="border border-gray-300 px-4 py-2 text-center">{corrente ?? '-'}</td>
+                      <td className="border border-gray-300 px-4 py-2 text-center">{potenciaCV ?? '-'}</td>
+                      <td className="border border-gray-300 px-4 py-2 text-center">{potenciaKW ?? '-'}</td>
                     </tr>
                   );
                 })}

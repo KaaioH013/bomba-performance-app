@@ -108,10 +108,10 @@
     line-height: 1.1 !important;
   }
   
-  /* Gráfico único - altura otimizada para caber com assinatura */
+  /* Gráfico único - altura reduzida para garantir assinatura na página 1 */
   .recharts-wrapper {
     width: 100% !important;
-    height: 190px !important;
+    height: 150px !important;
   }
   
   /* Textos dos gráficos legíveis */
