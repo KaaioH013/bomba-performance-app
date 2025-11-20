@@ -17,11 +17,23 @@ const PORT = process.env.PORT || 3000;
 
 // Middlewares - Configurar CORS para produção
 app.use(cors({
-  origin: [
-    'http://localhost:5173',
-    'https://bomba-performance-app.vercel.app',
-    'https://bomba-performance-app-*.vercel.app' // Preview deployments
-  ],
+  origin: function(origin, callback) {
+    // Permitir requisições sem origin (mobile apps, curl, etc)
+    if (!origin) return callback(null, true);
+    
+    // Permitir localhost e todos os domínios do Vercel
+    const allowedOrigins = [
+      'http://localhost:5173',
+      'https://bomba-performance-app.vercel.app'
+    ];
+    
+    // Permitir qualquer subdomínio do Vercel
+    if (origin.includes('.vercel.app') || allowedOrigins.includes(origin)) {
+      return callback(null, true);
+    }
+    
+    callback(new Error('Not allowed by CORS'));
+  },
   credentials: true,
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization']
