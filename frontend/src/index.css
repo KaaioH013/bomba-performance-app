@@ -85,7 +85,7 @@
   }
   
   .mb-6, .mb-8 {
-    margin-bottom: 0.4rem !important;
+    margin-bottom: 0.3rem !important;
   }
   
   .pb-4 {
@@ -111,7 +111,7 @@
   /* Gráfico único - altura otimizada para caber com assinatura */
   .recharts-wrapper {
     width: 100% !important;
-    height: 220px !important;
+    height: 190px !important;
   }
   
   /* Textos dos gráficos legíveis */
@@ -149,9 +149,9 @@
     page-break-inside: avoid !important;
   }
   
-  /* Conteúdo principal com padding confortável */
+  /* Conteúdo principal com padding otimizado */
   .bg-white {
-    padding: 1.2rem !important;
+    padding: 1rem !important;
   }
   
   /* FORÇAR 1 PÁGINA - margens otimizadas */
