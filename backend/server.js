@@ -2,14 +2,36 @@ import express from 'express';
 import cors from 'cors';
 import dotenv from 'dotenv';
 import pool from './db.js';
+import { verificarAutenticacao, login } from './auth.js';
 
 dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Middlewares
-app.use(cors());
+// Middlewares - Configurar CORS para produção
+app.use(cors({
+  origin: function(origin, callback) {
+    // Permitir requisições sem origin (mobile apps, curl, etc)
+    if (!origin) return callback(null, true);
+    
+    // Permitir localhost e todos os domínios do Vercel
+    const allowedOrigins = [
+      'http://localhost:5173',
+      'https://bomba-performance-app.vercel.app'
+    ];
+    
+    // Permitir qualquer subdomínio do Vercel
+    if (origin.includes('.vercel.app') || allowedOrigins.includes(origin)) {
+      return callback(null, true);
+    }
+    
+    callback(new Error('Not allowed by CORS'));
+  },
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+}));
 app.use(express.json());
 
 // Função auxiliar para calcular potência consumida em CV
@@ -44,13 +66,42 @@ async function testarConexao() {
 
 // ROTAS
 
+// Login (sem autenticação)
+app.post('/api/login', login);
+
+// Rota para limpar banco de dados (protegida)
+app.delete('/api/reset-database', verificarAutenticacao, async (req, res) => {
+  try {
+    await pool.query('DELETE FROM testes_bomba');
+    res.json({ success: true, message: 'Banco de dados limpo com sucesso' });
+  } catch (error) {
+    console.error('Erro ao limpar banco:', error);
+    res.status(500).json({ error: 'Erro ao limpar banco de dados' });
+  }
+});
+
+// Rota para download do backup (protegida)
+app.get('/api/download-database', verificarAutenticacao, async (req, res) => {
+  try {
+    const result = await pool.query('SELECT * FROM testes_bomba ORDER BY id');
+    const dados = result.rows;
+    
+    res.setHeader('Content-Type', 'application/json');
+    res.setHeader('Content-Disposition', `attachment; filename=backup_${new Date().toISOString().split('T')[0]}.json`);
+    res.json(dados);
+  } catch (error) {
+    console.error('Erro ao fazer backup:', error);
+    res.status(500).json({ error: 'Erro ao gerar backup' });
+  }
+});
+
 // Health check
 app.get('/api/health', (req, res) => {
   res.json({ status: 'ok', message: 'API funcionando' });
 });
 
-// Listar todos os testes
-app.get('/api/testes', async (req, res) => {
+// Listar todos os testes (protegido)
+app.get('/api/testes', verificarAutenticacao, async (req, res) => {
   try {
     const { cliente, modelo, numero_serie, data_inicio, data_fim } = req.query;
     
@@ -98,8 +149,8 @@ app.get('/api/testes', async (req, res) => {
   }
 });
 
-// Buscar teste por ID
-app.get('/api/testes/:id', async (req, res) => {
+// Buscar teste por ID (protegido)
+app.get('/api/testes/:id', verificarAutenticacao, async (req, res) => {
   try {
     const { id } = req.params;
     const result = await pool.query('SELECT * FROM testes_bomba WHERE id = $1', [id]);
@@ -115,8 +166,8 @@ app.get('/api/testes/:id', async (req, res) => {
   }
 });
 
-// Buscar próximo número RPB disponível
-app.get('/api/testes/proximo-rpb', async (req, res) => {
+// Buscar próximo número RPB disponível (protegido)
+app.get('/api/testes/proximo-rpb', verificarAutenticacao, async (req, res) => {
   try {
     const result = await pool.query('SELECT COALESCE(MAX(rpb), 0) + 1 as proximo_rpb FROM testes_bomba');
     const proximoRPB = result.rows[0].proximo_rpb;
@@ -128,8 +179,8 @@ app.get('/api/testes/proximo-rpb', async (req, res) => {
   }
 });
 
-// Criar novo teste
-app.post('/api/testes', async (req, res) => {
+// Criar novo teste (protegido)
+app.post('/api/testes', verificarAutenticacao, async (req, res) => {
   try {
     const dados = req.body;
     
@@ -201,8 +252,8 @@ app.post('/api/testes', async (req, res) => {
   }
 });
 
-// Atualizar teste
-app.put('/api/testes/:id', async (req, res) => {
+// Atualizar teste (protegido)
+app.put('/api/testes/:id', verificarAutenticacao, async (req, res) => {
   try {
     const { id } = req.params;
     const dados = req.body;
@@ -265,8 +316,8 @@ app.put('/api/testes/:id', async (req, res) => {
   }
 });
 
-// Deletar teste
-app.delete('/api/testes/:id', async (req, res) => {
+// Deletar teste (protegido)
+app.delete('/api/testes/:id', verificarAutenticacao, async (req, res) => {
   try {
     const { id } = req.params;
     const result = await pool.query('DELETE FROM testes_bomba WHERE id = $1 RETURNING id', [id]);
