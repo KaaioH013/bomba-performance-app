@@ -60,63 +60,63 @@
     padding: 1rem !important;
   }
   
-  /* Otimizado para caber em 1 PÁGINA mantendo qualidade */
+  /* Otimizado para 1 PÁGINA em 100% de escala */
   h1 {
-    font-size: 14pt !important;
-    margin-bottom: 0.2rem !important;
+    font-size: 12pt !important;
+    margin-bottom: 0.15rem !important;
     font-weight: bold !important;
   }
   
   h2 {
-    font-size: 10pt !important;
-    margin-bottom: 0.2rem !important;
-    margin-top: 0.3rem !important;
+    font-size: 9pt !important;
+    margin-bottom: 0.15rem !important;
+    margin-top: 0.2rem !important;
     font-weight: 600 !important;
   }
   
   p {
-    margin-bottom: 0.1rem !important;
-    line-height: 1.15 !important;
-    font-size: 8pt !important;
+    margin-bottom: 0.08rem !important;
+    line-height: 1.1 !important;
+    font-size: 7pt !important;
   }
   
   .grid {
-    gap: 0.4rem !important;
+    gap: 0.3rem !important;
   }
   
   .mb-6, .mb-8 {
-    margin-bottom: 0.3rem !important;
+    margin-bottom: 0.25rem !important;
   }
   
   .pb-4 {
-    padding-bottom: 0.15rem !important;
+    padding-bottom: 0.1rem !important;
   }
   
   .space-y-2 > * + * {
-    margin-top: 0.1rem !important;
+    margin-top: 0.08rem !important;
   }
   
-  /* Tabelas compactas mas legíveis */
+  /* Tabelas super compactas */
   table {
     width: 100% !important;
-    font-size: 7.5pt !important;
-    margin: 0.2rem 0 !important;
+    font-size: 6.5pt !important;
+    margin: 0.15rem 0 !important;
   }
   
   table th, table td {
-    padding: 0.1rem 0.2rem !important;
-    line-height: 1 !important;
+    padding: 0.08rem 0.15rem !important;
+    line-height: 0.95 !important;
   }
   
-  /* Gráficos menores para caber em 1 página */
+  /* Gráficos compactos (equivalente a 75% de 240px) */
   .recharts-wrapper {
     width: 100% !important;
-    height: 180px !important;
+    height: 150px !important;
   }
   
   /* Textos dos gráficos menores */
   .recharts-text {
-    font-size: 9px !important;
+    font-size: 8px !important;
   }
   
   /* Remover legendas dos gráficos */
@@ -124,23 +124,23 @@
     display: none !important;
   }
   
-  /* Logo compacto */
+  /* Logo e imagens super compactas */
   img[alt="Logo"] {
-    height: 2rem !important;
-    margin-bottom: 0.15rem !important;
-  }
-  
-  /* Assinatura compacta */
-  img[alt="Assinatura"] {
-    height: 2.5rem !important;
+    height: 1.5rem !important;
     margin-bottom: 0.1rem !important;
   }
   
-  /* Seção de assinatura super compacta */
+  /* Assinatura menor */
+  img[alt="Assinatura"] {
+    height: 2rem !important;
+    margin-bottom: 0.08rem !important;
+  }
+  
+  /* Seção de assinatura ultra compacta */
   .border-t-2 {
     border-top-width: 1px !important;
-    padding-top: 0.25rem !important;
-    margin-top: 0.3rem !important;
+    padding-top: 0.2rem !important;
+    margin-top: 0.25rem !important;
     page-break-inside: avoid !important;
   }
   
@@ -149,15 +149,22 @@
     page-break-inside: avoid !important;
   }
   
-  /* FORÇAR 1 PÁGINA ÚNICA - margens mínimas */
-  @page {
-    size: A4 portrait;
-    margin: 0.5cm 0.6cm;
+  /* Conteúdo principal sem padding excessivo */
+  .bg-white {
+    padding: 0.8rem !important;
   }
   
-  /* Zoom automático para aproveitar espaço */
+  /* FORÇAR 1 PÁGINA ÚNICA - margens mínimas e zoom */
+  @page {
+    size: A4 portrait;
+    margin: 0.4cm 0.5cm;
+  }
+  
+  /* Zoom equivalente a 75% para caber tudo */
   body {
-    zoom: 0.98;
+    zoom: 0.75;
+    -moz-transform: scale(0.75);
+    -moz-transform-origin: 0 0;
   }
   
   /* Forçar zoom para caber conteúdo */
