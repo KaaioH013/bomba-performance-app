@@ -15,8 +15,17 @@ const __dirname = dirname(__filename);
 const app = express();
 const PORT = process.env.PORT || 3000;
 
-// Middlewares
-app.use(cors());
+// Middlewares - Configurar CORS para produção
+app.use(cors({
+  origin: [
+    'http://localhost:5173',
+    'https://bomba-performance-app.vercel.app',
+    'https://bomba-performance-app-*.vercel.app' // Preview deployments
+  ],
+  credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
+}));
 app.use(express.json());
 
 // Função auxiliar para calcular potência consumida em CV
