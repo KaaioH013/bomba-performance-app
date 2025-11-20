@@ -108,10 +108,10 @@
     line-height: 1.1 !important;
   }
   
-  /* Gráfico único maior e mais legível */
+  /* Gráfico único - altura otimizada para caber com assinatura */
   .recharts-wrapper {
     width: 100% !important;
-    height: 260px !important;
+    height: 220px !important;
   }
   
   /* Textos dos gráficos legíveis */
