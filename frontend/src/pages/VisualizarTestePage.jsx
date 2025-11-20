@@ -167,10 +167,10 @@ export default function VisualizarTestePage() {
           </div>
         </div>
 
-        {/* Gráfico de Performance */}
+        {/* Gráfico de Performance - força quebra de página antes */}
         {dadosGrafico.length > 0 && (
-          <div className="mb-6">
-            <h2 className="text-lg font-semibold mb-3 text-blue-600">Curva de Performance</h2>
+          <div className="mb-6 page-break-inside-avoid print:mt-4">
+            <h2 className="text-lg font-semibold mb-3 text-blue-600 print:text-base print:mb-2">Curva de Performance</h2>
             <GraficoCurvaPerformance dados={dadosGrafico} />
           </div>
         )}

@@ -42,6 +42,7 @@
   html, body {
     width: 100% !important;
     height: 100% !important;
+    overflow: visible !important;
   }
   
   /* Remover todos os containers limitadores */
@@ -56,19 +57,53 @@
     border-radius: 0 !important;
     box-shadow: none !important;
     margin: 0 !important;
-    padding: 1.5rem !important;
+    padding: 1rem !important;
   }
   
-  /* Aumentar tamanho de tabelas e gráficos */
+  /* Compactar espaçamentos para caber em 2 páginas */
+  h1 {
+    font-size: 18pt !important;
+    margin-bottom: 0.3rem !important;
+  }
+  
+  h2 {
+    font-size: 12pt !important;
+    margin-bottom: 0.4rem !important;
+    margin-top: 0.5rem !important;
+  }
+  
+  p, div {
+    margin-bottom: 0.2rem !important;
+    line-height: 1.3 !important;
+  }
+  
+  .grid {
+    gap: 0.8rem !important;
+  }
+  
+  .mb-6, .mb-8 {
+    margin-bottom: 0.6rem !important;
+  }
+  
+  .pb-4 {
+    padding-bottom: 0.3rem !important;
+  }
+  
+  /* Aumentar tamanho de tabelas mas compactar linhas */
   table {
     width: 100% !important;
-    font-size: 11pt !important;
+    font-size: 9pt !important;
+    margin: 0.4rem 0 !important;
   }
   
-  /* Gráficos maiores */
+  table th, table td {
+    padding: 0.2rem 0.3rem !important;
+  }
+  
+  /* Gráficos menores para caber melhor */
   .recharts-wrapper {
     width: 100% !important;
-    height: 350px !important;
+    height: 280px !important;
   }
   
   /* Remover legendas dos gráficos */
@@ -76,9 +111,30 @@
     display: none !important;
   }
   
-  /* Ajustar tamanho da página */
+  /* Logo menor */
+  img[alt="Logo"] {
+    height: 3rem !important;
+    margin-bottom: 0.3rem !important;
+  }
+  
+  /* Forçar quebras de página estratégicas */
+  .page-break-after {
+    page-break-after: always !important;
+  }
+  
+  .page-break-inside-avoid {
+    page-break-inside: avoid !important;
+  }
+  
+  /* Ajustar tamanho da página com margens menores */
   @page {
     size: A4 portrait;
-    margin: 0.8cm;
+    margin: 0.6cm 0.8cm;
+  }
+  
+  /* Forçar zoom para caber conteúdo */
+  * {
+    -webkit-print-color-adjust: exact !important;
+    print-color-adjust: exact !important;
   }
 }
