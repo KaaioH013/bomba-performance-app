@@ -1,10 +1,8 @@
 import axios from 'axios';
-
-// URL do backend em produção
-const API_URL = 'https://bomba-performance-backend.onrender.com/api';
+import { API_BASE_URL } from '../config';
 
 const api = axios.create({
-  baseURL: API_URL,
+  baseURL: API_BASE_URL,
   headers: {
     'Content-Type': 'application/json',
   },
@@ -32,7 +30,7 @@ api.interceptors.response.use(
 );
 
 export const authAPI = {
-  login: (senha) => axios.post(`${API_URL}/login`, { senha }),
+  login: (senha) => axios.post(`${API_BASE_URL}/login`, { senha }),
   logout: () => {
     localStorage.removeItem('token');
     localStorage.removeItem('userName');
@@ -43,7 +41,7 @@ export const authAPI = {
 export const databaseAPI = {
   downloadBackup: () => {
     const token = localStorage.getItem('token');
-    return axios.get(`${API_URL}/download-database`, {
+    return axios.get(`${API_BASE_URL}/download-database`, {
       headers: { Authorization: `Bearer ${token}` },
       responseType: 'blob'
     });
