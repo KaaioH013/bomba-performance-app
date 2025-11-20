@@ -24,11 +24,14 @@ export default function HomePage({ userName, setUserName }) {
   const carregarTestes = async () => {
     try {
       setLoading(true);
+      console.log('🔄 Carregando testes...', filtros);
       const response = await testesAPI.listar(filtros);
+      console.log('✅ Testes recebidos:', response.data);
       setTestes(response.data);
     } catch (error) {
-      console.error('Erro ao carregar testes:', error);
-      alert('Erro ao carregar testes. Verifique se o backend está rodando.');
+      console.error('❌ Erro ao carregar testes:', error);
+      console.error('Detalhes do erro:', error.response?.data);
+      alert('Erro ao carregar testes: ' + (error.response?.data?.error || error.message));
     } finally {
       setLoading(false);
     }
