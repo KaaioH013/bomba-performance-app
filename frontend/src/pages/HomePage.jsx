@@ -31,7 +31,18 @@ export default function HomePage({ userName, setUserName }) {
     } catch (error) {
       console.error('❌ Erro ao carregar testes:', error);
       console.error('Detalhes do erro:', error.response?.data);
-      alert('Erro ao carregar testes: ' + (error.response?.data?.error || error.message));
+      
+      // Mensagem mais amigável para timeout
+      let mensagem = 'Erro ao carregar testes.';
+      if (error.code === 'ECONNABORTED') {
+        mensagem = 'O servidor demorou muito para responder. Aguarde 1 minuto e tente novamente (o Render está acordando).';
+      } else if (error.response?.data?.error) {
+        mensagem = error.response.data.error;
+      } else if (error.message) {
+        mensagem = error.message;
+      }
+      
+      alert(mensagem);
     } finally {
       setLoading(false);
     }
