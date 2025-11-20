@@ -242,19 +242,19 @@ export default function VisualizarTestePage() {
         </div>
 
         {/* Assinatura */}
-        <div className="border-t-2 border-gray-300 pt-6 mt-8">
-          <div className="grid grid-cols-2 gap-8">
+        <div className="border-t-2 border-gray-300 pt-6 mt-8 print:pt-3 print:mt-4">
+          <div className="grid grid-cols-2 gap-8 print:gap-4">
             <div>
-              <p className="text-sm mb-2">Ass. Responsável:</p>
+              <p className="text-sm mb-2 print:text-xs print:mb-1">Ass. Responsável:</p>
               {(teste.resultado === 'Aprovado' || teste.resultado === 'Reprovado') && (
-                <img src="/assinatura.jpg" alt="Assinatura" className="h-16 mb-2" />
+                <img src="/assinatura.jpg" alt="Assinatura" className="h-16 mb-2 print:h-12 print:mb-1" />
               )}
               <div className="border-t border-gray-400"></div>
             </div>
             <div>
-              <p className="text-sm mb-12">Data:</p>
-              <p className="text-sm font-semibold">{new Date().toLocaleDateString('pt-BR')}</p>
-              <div className="border-t border-gray-400 mt-8"></div>
+              <p className="text-sm mb-12 print:text-xs print:mb-8">Data:</p>
+              <p className="text-sm font-semibold print:text-xs">{new Date().toLocaleDateString('pt-BR')}</p>
+              <div className="border-t border-gray-400 mt-8 print:mt-6"></div>
             </div>
           </div>
         </div>

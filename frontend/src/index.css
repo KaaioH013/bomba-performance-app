@@ -60,50 +60,52 @@
     padding: 1rem !important;
   }
   
-  /* Compactar espaçamentos para caber em 2 páginas */
+  /* Espaçamentos balanceados para caber em 2 páginas */
   h1 {
-    font-size: 18pt !important;
-    margin-bottom: 0.3rem !important;
+    font-size: 16pt !important;
+    margin-bottom: 0.4rem !important;
   }
   
   h2 {
-    font-size: 12pt !important;
-    margin-bottom: 0.4rem !important;
-    margin-top: 0.5rem !important;
+    font-size: 11pt !important;
+    margin-bottom: 0.3rem !important;
+    margin-top: 0.4rem !important;
   }
   
-  p, div {
-    margin-bottom: 0.2rem !important;
-    line-height: 1.3 !important;
+  p {
+    margin-bottom: 0.15rem !important;
+    line-height: 1.2 !important;
+    font-size: 9pt !important;
   }
   
   .grid {
-    gap: 0.8rem !important;
+    gap: 0.6rem !important;
   }
   
   .mb-6, .mb-8 {
-    margin-bottom: 0.6rem !important;
+    margin-bottom: 0.5rem !important;
   }
   
   .pb-4 {
-    padding-bottom: 0.3rem !important;
+    padding-bottom: 0.25rem !important;
   }
   
-  /* Aumentar tamanho de tabelas mas compactar linhas */
+  /* Tabelas otimizadas */
   table {
     width: 100% !important;
-    font-size: 9pt !important;
-    margin: 0.4rem 0 !important;
+    font-size: 8.5pt !important;
+    margin: 0.3rem 0 !important;
   }
   
   table th, table td {
-    padding: 0.2rem 0.3rem !important;
+    padding: 0.15rem 0.25rem !important;
+    line-height: 1.1 !important;
   }
   
-  /* Gráficos menores para caber melhor */
+  /* Gráficos com tamanho ideal */
   .recharts-wrapper {
     width: 100% !important;
-    height: 280px !important;
+    height: 240px !important;
   }
   
   /* Remover legendas dos gráficos */
@@ -113,8 +115,16 @@
   
   /* Logo menor */
   img[alt="Logo"] {
-    height: 3rem !important;
-    margin-bottom: 0.3rem !important;
+    height: 2.5rem !important;
+    margin-bottom: 0.2rem !important;
+  }
+  
+  /* Assinatura na mesma página do resultado */
+  .border-t-2 {
+    border-top-width: 1px !important;
+    padding-top: 0.4rem !important;
+    margin-top: 0.5rem !important;
+    page-break-inside: avoid !important;
   }
   
   /* Forçar quebras de página estratégicas */
@@ -126,10 +136,15 @@
     page-break-inside: avoid !important;
   }
   
+  /* Seções de resultado e assinatura juntas */
+  .mb-6:has(+ .border-t-2) {
+    margin-bottom: 0.3rem !important;
+  }
+  
   /* Ajustar tamanho da página com margens menores */
   @page {
     size: A4 portrait;
-    margin: 0.6cm 0.8cm;
+    margin: 0.7cm;
   }
   
   /* Forçar zoom para caber conteúdo */
