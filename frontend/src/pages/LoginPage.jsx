@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { authAPI } from '../services/api';
 
 export default function LoginPage({ onLogin }) {
   const [senha, setSenha] = useState('');
@@ -13,13 +14,8 @@ export default function LoginPage({ onLogin }) {
     setLoading(true);
 
     try {
-      const response = await fetch('http://localhost:3000/api/login', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ senha })
-      });
-
-      const data = await response.json();
+      const response = await authAPI.login(senha);
+      const data = response.data;
 
       if (data.success) {
         localStorage.setItem('token', data.token);
