@@ -37,7 +37,7 @@ function NavBar({ onLogout, userName }) {
   };
   
   return (
-    <nav className="bg-blue-600 text-white shadow-lg">
+    <nav className="bg-blue-600 text-white shadow-lg print:hidden">
       <div className="container mx-auto px-4">
         <div className="flex items-center justify-between h-16">
           <div className="flex items-center space-x-2">

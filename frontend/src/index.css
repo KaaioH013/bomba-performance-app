@@ -25,3 +25,60 @@
     @apply bg-white rounded-lg shadow-md p-6;
   }
 }
+
+/* Estilos de impressão */
+@media print {
+  /* Ocultar TUDO do sistema - navbar, header, footer, menus */
+  nav, header, footer, .print\:hidden {
+    display: none !important;
+  }
+  
+  /* Ampliar área de impressão - usar toda a página */
+  body {
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  
+  html, body {
+    width: 100% !important;
+    height: 100% !important;
+  }
+  
+  /* Remover todos os containers limitadores */
+  .max-w-6xl, .mx-auto, .container {
+    max-width: 100% !important;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+  
+  /* Conteúdo do relatório em tela cheia */
+  .bg-white {
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    margin: 0 !important;
+    padding: 1.5rem !important;
+  }
+  
+  /* Aumentar tamanho de tabelas e gráficos */
+  table {
+    width: 100% !important;
+    font-size: 11pt !important;
+  }
+  
+  /* Gráficos maiores */
+  .recharts-wrapper {
+    width: 100% !important;
+    height: 350px !important;
+  }
+  
+  /* Remover legendas dos gráficos */
+  .recharts-legend-wrapper {
+    display: none !important;
+  }
+  
+  /* Ajustar tamanho da página */
+  @page {
+    size: A4 portrait;
+    margin: 0.8cm;
+  }
+}

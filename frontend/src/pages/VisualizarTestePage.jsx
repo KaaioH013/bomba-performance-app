@@ -85,14 +85,14 @@ export default function VisualizarTestePage() {
       </div>
 
       {/* Relatório - área de impressão */}
-      <div className="bg-white p-8 rounded-lg shadow-lg print:shadow-none">
+      <div className="bg-white p-8 rounded-lg shadow-lg print:shadow-none print:p-4">
         {/* Cabeçalho */}
-        <div className="text-center border-b-2 border-gray-300 pb-4 mb-6">
+        <div className="text-center border-b-2 border-gray-300 pb-4 mb-6 print:pb-2 print:mb-4">
           <div className="hidden print:block mb-4">
-            <img src="/logo.png" alt="Logo" className="h-20 mx-auto" />
+            <img src="/logo.png" alt="Logo" className="h-16 mx-auto" />
           </div>
-          <h1 className="text-2xl font-bold">RELATÓRIO DE PERFORMANCE DA BOMBA</h1>
-          <p className="text-lg mt-2">RPB nº: <strong>{teste.rpb}</strong></p>
+          <h1 className="text-2xl font-bold print:text-xl">RELATÓRIO DE PERFORMANCE DA BOMBA</h1>
+          <p className="text-lg mt-2 print:text-base print:mt-1">RPB nº: <strong>{teste.rpb}</strong></p>
         </div>
 
         {/* Informações Gerais */}

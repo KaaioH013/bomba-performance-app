@@ -1,5 +1,5 @@
 import React from 'react';
-import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 
 export default function GraficoCurvaPerformance({ dados }) {
   if (!dados || dados.length === 0) {
@@ -18,19 +18,18 @@ export default function GraficoCurvaPerformance({ dados }) {
         <ResponsiveContainer width="100%" height={300}>
           <LineChart data={dados} margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
             <CartesianGrid strokeDasharray="3 3" />
-            <XAxis 
-              dataKey="pressao" 
+            <XAxis
+              dataKey="pressao"
               label={{ value: 'Pressão (Kgf/cm²)', position: 'insideBottom', offset: -5 }}
             />
-            <YAxis 
+            <YAxis
               label={{ value: 'Vazão (m³/h)', angle: -90, position: 'insideLeft' }}
             />
             <Tooltip />
-            <Legend />
-            <Line 
-              type="monotone" 
-              dataKey="vazao" 
-              stroke="#2563eb" 
+            <Line
+              type="monotone"
+              dataKey="vazao"
+              stroke="#2563eb"
               strokeWidth={2}
               name="Vazão (m³/h)"
               dot={{ r: 5 }}
@@ -45,19 +44,18 @@ export default function GraficoCurvaPerformance({ dados }) {
         <ResponsiveContainer width="100%" height={300}>
           <LineChart data={dados} margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
             <CartesianGrid strokeDasharray="3 3" />
-            <XAxis 
-              dataKey="potencia" 
+            <XAxis
+              dataKey="potencia"
               label={{ value: 'Potência (CV)', position: 'insideBottom', offset: -5 }}
             />
-            <YAxis 
+            <YAxis
               label={{ value: 'Vazão (m³/h)', angle: -90, position: 'insideLeft' }}
             />
             <Tooltip />
-            <Legend />
-            <Line 
-              type="monotone" 
-              dataKey="vazao" 
-              stroke="#dc2626" 
+            <Line
+              type="monotone"
+              dataKey="vazao"
+              stroke="#dc2626"
               strokeWidth={2}
               name="Vazão (m³/h)"
               dot={{ r: 5 }}
