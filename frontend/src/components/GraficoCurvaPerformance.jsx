@@ -1,7 +1,7 @@
 import React from 'react';
 import { LineChart, Line, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer } from 'recharts';
 
-export default function GraficoCurvaPerformance({ dados }) {
+export default function GraficoCurvaPerformance({ dados, mostrarPressao = true, mostrarPotencia = true }) {
   if (!dados || dados.length === 0) {
     return (
       <div className="text-center py-8 text-gray-500">
@@ -13,6 +13,7 @@ export default function GraficoCurvaPerformance({ dados }) {
   return (
     <div className="w-full">
       {/* Gráfico Vazão x Pressão */}
+      {mostrarPressao && (
       <div className="mb-8">
         <h3 className="text-sm font-semibold mb-4 text-center">Vazão x Pressão</h3>
         <ResponsiveContainer width="100%" height={300}>
@@ -37,8 +38,10 @@ export default function GraficoCurvaPerformance({ dados }) {
           </LineChart>
         </ResponsiveContainer>
       </div>
+      )}
 
       {/* Gráfico Vazão x Potência */}
+      {mostrarPotencia && (
       <div className="mb-8">
         <h3 className="text-sm font-semibold mb-4 text-center">Vazão x Potência Consumida</h3>
         <ResponsiveContainer width="100%" height={300}>
@@ -63,6 +66,7 @@ export default function GraficoCurvaPerformance({ dados }) {
           </LineChart>
         </ResponsiveContainer>
       </div>
+      )}
     </div>
   );
 }

@@ -8,6 +8,8 @@ export default function VisualizarTestePage() {
   const navigate = useNavigate();
   const [teste, setTeste] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [imprimirPressao, setImprimirPressao] = useState(true);
+  const [imprimirPotencia, setImprimirPotencia] = useState(false);
 
   useEffect(() => {
     carregarTeste();
@@ -167,11 +169,47 @@ export default function VisualizarTestePage() {
           </div>
         </div>
 
-        {/* Gráfico de Performance - força quebra de página antes */}
+        {/* Opções de Impressão de Gráficos - não imprime */}
         {dadosGrafico.length > 0 && (
-          <div className="mb-6 page-break-inside-avoid print:mt-4">
+          <div className="mb-4 print:hidden">
+            <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+              <h3 className="text-sm font-semibold text-blue-900 mb-2">Gráficos para Impressão:</h3>
+              <div className="flex gap-4">
+                <label className="flex items-center cursor-pointer">
+                  <input
+                    type="checkbox"
+                    checked={imprimirPressao}
+                    onChange={(e) => setImprimirPressao(e.target.checked)}
+                    className="mr-2 h-4 w-4"
+                  />
+                  <span className="text-sm">Vazão x Pressão</span>
+                </label>
+                <label className="flex items-center cursor-pointer">
+                  <input
+                    type="checkbox"
+                    checked={imprimirPotencia}
+                    onChange={(e) => setImprimirPotencia(e.target.checked)}
+                    className="mr-2 h-4 w-4"
+                  />
+                  <span className="text-sm">Vazão x Potência</span>
+                </label>
+              </div>
+              <p className="text-xs text-gray-600 mt-2">
+                💡 Selecione qual(is) gráfico(s) deseja imprimir. Recomendado: apenas 1 para melhor legibilidade.
+              </p>
+            </div>
+          </div>
+        )}
+
+        {/* Gráfico de Performance */}
+        {dadosGrafico.length > 0 && (
+          <div className={`mb-6 page-break-inside-avoid ${imprimirPressao && imprimirPotencia ? '' : 'print:mt-4'}`}>
             <h2 className="text-lg font-semibold mb-3 text-blue-600 print:text-base print:mb-2">Curva de Performance</h2>
-            <GraficoCurvaPerformance dados={dadosGrafico} />
+            <GraficoCurvaPerformance 
+              dados={dadosGrafico}
+              mostrarPressao={imprimirPressao}
+              mostrarPotencia={imprimirPotencia}
+            />
           </div>
         )}
 
