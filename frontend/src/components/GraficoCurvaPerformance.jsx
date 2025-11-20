@@ -14,9 +14,9 @@ export default function GraficoCurvaPerformance({ dados, mostrarPressao = true, 
     <div className="w-full">
       {/* Gráfico Vazão x Pressão */}
       {mostrarPressao && (
-      <div className="mb-8">
-        <h3 className="text-sm font-semibold mb-4 text-center">Vazão x Pressão</h3>
-        <ResponsiveContainer width="100%" height={300}>
+      <div className="mb-2">
+        <h3 className="text-sm font-semibold mb-2 text-center">Vazão x Pressão</h3>
+        <ResponsiveContainer width="100%" height={150}>
           <LineChart data={dados} margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis
@@ -42,9 +42,9 @@ export default function GraficoCurvaPerformance({ dados, mostrarPressao = true, 
 
       {/* Gráfico Vazão x Potência */}
       {mostrarPotencia && (
-      <div className="mb-8">
-        <h3 className="text-sm font-semibold mb-4 text-center">Vazão x Potência Consumida</h3>
-        <ResponsiveContainer width="100%" height={300}>
+      <div className="mb-2">
+        <h3 className="text-sm font-semibold mb-2 text-center">Vazão x Potência Consumida</h3>
+        <ResponsiveContainer width="100%" height={150}>
           <LineChart data={dados} margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis
