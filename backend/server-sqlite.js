@@ -87,6 +87,18 @@ app.get('/api/download-database', verificarAutenticacao, (req, res) => {
   }
 });
 
+// Reset database (protegido) - APENAS PARA DESENVOLVIMENTO
+app.delete('/api/reset-database', verificarAutenticacao, (req, res) => {
+  try {
+    db.exec('DELETE FROM testes_bomba');
+    console.log('🗑️ Banco de dados limpo - todos os testes deletados');
+    res.json({ success: true, message: 'Banco de dados limpo com sucesso' });
+  } catch (error) {
+    console.error('Erro ao limpar banco:', error);
+    res.status(500).json({ error: 'Erro ao limpar banco de dados' });
+  }
+});
+
 // Health check
 app.get('/api/health', (req, res) => {
   res.json({ status: 'ok', message: 'API funcionando' });
