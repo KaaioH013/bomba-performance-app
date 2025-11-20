@@ -19,20 +19,20 @@ export default function GraficoCurvaPerformance({ dados }) {
           <LineChart data={dados} margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis 
-              dataKey="vazao" 
-              label={{ value: 'Vazão (m³/h)', position: 'insideBottom', offset: -5 }}
+              dataKey="pressao" 
+              label={{ value: 'Pressão (Kgf/cm²)', position: 'insideBottom', offset: -5 }}
             />
             <YAxis 
-              label={{ value: 'Pressão (Kgf/cm²)', angle: -90, position: 'insideLeft' }}
+              label={{ value: 'Vazão (m³/h)', angle: -90, position: 'insideLeft' }}
             />
             <Tooltip />
             <Legend />
             <Line 
               type="monotone" 
-              dataKey="pressao" 
+              dataKey="vazao" 
               stroke="#2563eb" 
               strokeWidth={2}
-              name="Pressão (Kgf/cm²)"
+              name="Vazão (m³/h)"
               dot={{ r: 5 }}
             />
           </LineChart>
@@ -46,20 +46,20 @@ export default function GraficoCurvaPerformance({ dados }) {
           <LineChart data={dados} margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis 
-              dataKey="vazao" 
-              label={{ value: 'Vazão (m³/h)', position: 'insideBottom', offset: -5 }}
+              dataKey="potencia" 
+              label={{ value: 'Potência (CV)', position: 'insideBottom', offset: -5 }}
             />
             <YAxis 
-              label={{ value: 'Potência (CV)', angle: -90, position: 'insideLeft' }}
+              label={{ value: 'Vazão (m³/h)', angle: -90, position: 'insideLeft' }}
             />
             <Tooltip />
             <Legend />
             <Line 
               type="monotone" 
-              dataKey="potencia" 
+              dataKey="vazao" 
               stroke="#dc2626" 
               strokeWidth={2}
-              name="Potência (CV)"
+              name="Vazão (m³/h)"
               dot={{ r: 5 }}
             />
           </LineChart>

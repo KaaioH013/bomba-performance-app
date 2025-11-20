@@ -88,6 +88,9 @@ export default function VisualizarTestePage() {
       <div className="bg-white p-8 rounded-lg shadow-lg print:shadow-none">
         {/* Cabeçalho */}
         <div className="text-center border-b-2 border-gray-300 pb-4 mb-6">
+          <div className="hidden print:block mb-4">
+            <img src="/logo.png" alt="Logo" className="h-20 mx-auto" />
+          </div>
           <h1 className="text-2xl font-bold">RELATÓRIO DE PERFORMANCE DA BOMBA</h1>
           <p className="text-lg mt-2">RPB nº: <strong>{teste.rpb}</strong></p>
         </div>
@@ -97,7 +100,7 @@ export default function VisualizarTestePage() {
           <div>
             <h2 className="text-lg font-semibold mb-3 text-blue-600">Informações Gerais</h2>
             <div className="space-y-2 text-sm">
-              <p><strong>Data:</strong> {formatarData(teste.data)}</p>
+              <p><strong>Data:</strong> {new Date().toLocaleDateString('pt-BR')}</p>
               <p><strong>OP/OF:</strong> {teste.op_of || '-'}</p>
               <p><strong>Cliente:</strong> {teste.cliente || '-'}</p>
               <p><strong>N° Proposta:</strong> {teste.n_proposta || '-'}</p>
@@ -242,12 +245,16 @@ export default function VisualizarTestePage() {
         <div className="border-t-2 border-gray-300 pt-6 mt-8">
           <div className="grid grid-cols-2 gap-8">
             <div>
-              <p className="text-sm mb-12">Ass. Fornecedor:</p>
+              <p className="text-sm mb-2">Ass. Responsável:</p>
+              {(teste.resultado === 'Aprovado' || teste.resultado === 'Reprovado') && (
+                <img src="/assinatura.jpg" alt="Assinatura" className="h-16 mb-2" />
+              )}
               <div className="border-t border-gray-400"></div>
             </div>
             <div>
               <p className="text-sm mb-12">Data:</p>
-              <div className="border-t border-gray-400"></div>
+              <p className="text-sm font-semibold">{new Date().toLocaleDateString('pt-BR')}</p>
+              <div className="border-t border-gray-400 mt-8"></div>
             </div>
           </div>
         </div>
