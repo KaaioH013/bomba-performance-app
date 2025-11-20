@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: bomba-performance-backend
+    env: node
+    buildCommand: cd backend && npm install
+    startCommand: cd backend && node server-sqlite.js
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: SENHA_ACESSO
+        sync: false
+    disk:
+      name: bomba-db-disk
+      mountPath: /opt/render/project/src/backend
+      sizeGB: 1
