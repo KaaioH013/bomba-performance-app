@@ -1,10 +1,28 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { testesAPI } from '../services/api';
 import TesteForm from '../components/TesteForm';
 
 export default function NovoTestePage({ userName }) {
   const navigate = useNavigate();
+  const [proximoRPB, setProximoRPB] = useState(null);
+  const [carregando, setCarregando] = useState(true);
+
+  useEffect(() => {
+    const buscarProximoRPB = async () => {
+      try {
+        const response = await testesAPI.proximoRPB();
+        setProximoRPB(response.data.proximoRPB);
+      } catch (error) {
+        console.error('Erro ao buscar próximo RPB:', error);
+        setProximoRPB(1); // Fallback para 1 se houver erro
+      } finally {
+        setCarregando(false);
+      }
+    };
+
+    buscarProximoRPB();
+  }, []);
 
   const handleSubmit = async (dados) => {
     try {
@@ -27,6 +45,14 @@ export default function NovoTestePage({ userName }) {
     }
   };
 
+  if (carregando) {
+    return (
+      <div className="max-w-6xl mx-auto text-center py-8">
+        <p className="text-gray-600">Carregando...</p>
+      </div>
+    );
+  }
+
   return (
     <div className="max-w-6xl mx-auto">
       <div className="mb-6">
@@ -36,7 +62,7 @@ export default function NovoTestePage({ userName }) {
 
       <TesteForm 
         onSubmit={handleSubmit}
-        proximoRPB={null}
+        proximoRPB={proximoRPB}
         onCancel={() => navigate('/')}
       />
     </div>
