@@ -17,7 +17,7 @@ export default function LoginPage({ onLogin }) {
       const response = await authAPI.login(senha);
       const data = response.data;
 
-      if (data.success) {
+      if (data.token) {
         localStorage.setItem('token', data.token);
         onLogin(data.token);
         navigate('/');
