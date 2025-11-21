@@ -149,6 +149,19 @@ app.get('/api/testes', verificarAutenticacao, async (req, res) => {
   }
 });
 
+// Buscar próximo número RPB disponível (protegido) - DEVE VIR ANTES de /:id
+app.get('/api/testes/proximo-rpb', verificarAutenticacao, async (req, res) => {
+  try {
+    const result = await pool.query('SELECT COALESCE(MAX(rpb), 0) + 1 as proximo_rpb FROM testes_bomba');
+    const proximoRPB = result.rows[0].proximo_rpb;
+    console.log(`📊 Próximo RPB solicitado: ${proximoRPB}`);
+    res.json({ proximoRPB: proximoRPB });
+  } catch (error) {
+    console.error('Erro ao buscar próximo RPB:', error);
+    res.status(500).json({ error: 'Erro ao buscar próximo RPB' });
+  }
+});
+
 // Buscar teste por ID (protegido)
 app.get('/api/testes/:id', verificarAutenticacao, async (req, res) => {
   try {
@@ -163,19 +176,6 @@ app.get('/api/testes/:id', verificarAutenticacao, async (req, res) => {
   } catch (error) {
     console.error('Erro ao buscar teste:', error);
     res.status(500).json({ error: 'Erro ao buscar teste' });
-  }
-});
-
-// Buscar próximo número RPB disponível (protegido)
-app.get('/api/testes/proximo-rpb', verificarAutenticacao, async (req, res) => {
-  try {
-    const result = await pool.query('SELECT COALESCE(MAX(rpb), 0) + 1 as proximo_rpb FROM testes_bomba');
-    const proximoRPB = result.rows[0].proximo_rpb;
-    console.log(`📊 Próximo RPB solicitado: ${proximoRPB}`);
-    res.json({ proximo_rpb: proximoRPB });
-  } catch (error) {
-    console.error('Erro ao buscar próximo RPB:', error);
-    res.status(500).json({ error: 'Erro ao buscar próximo RPB' });
   }
 });
 
