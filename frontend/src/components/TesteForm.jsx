@@ -4,7 +4,7 @@ import GraficoCurvaPerformance from './GraficoCurvaPerformance';
 export default function TesteForm({ onSubmit, dadosIniciais = {}, proximoRPB, onCancel }) {
   const [mostrarPrevia, setMostrarPrevia] = useState(false);
   const [dados, setDados] = useState({
-    rpb: '',
+    rpb: proximoRPB || '',
     data: new Date().toISOString().split('T')[0],
     op_of: '',
     cliente: '',
@@ -67,8 +67,11 @@ export default function TesteForm({ onSubmit, dadosIniciais = {}, proximoRPB, on
     // Para edição, usar o RPB dos dados iniciais
     if (dadosIniciais.id && dadosIniciais.rpb) {
       setDados(prev => ({ ...prev, rpb: dadosIniciais.rpb }));
+    } else if (proximoRPB && !dadosIniciais.id) {
+      // Para novo teste, usar o proximoRPB
+      setDados(prev => ({ ...prev, rpb: proximoRPB }));
     }
-  }, [dadosIniciais.id, dadosIniciais.rpb]);
+  }, [dadosIniciais.id, dadosIniciais.rpb, proximoRPB]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
