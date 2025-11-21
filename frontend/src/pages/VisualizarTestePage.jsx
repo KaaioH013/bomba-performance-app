@@ -295,6 +295,11 @@ export default function VisualizarTestePage() {
               <div className="border-t border-gray-400 mt-8 print:mt-3"></div>
             </div>
           </div>
+          
+          {/* CS Analytics® branding */}
+          <div className="text-center mt-6 print:mt-2 text-gray-500 print:text-[8px] text-xs">
+            <p>Powered by <strong className="text-blue-600">CS Analytics®</strong></p>
+          </div>
         </div>
       </div>
     </div>

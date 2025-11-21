@@ -134,7 +134,8 @@ function App() {
         {isAuthenticated && (
           <footer className="bg-gray-800 text-white py-4 mt-8">
             <div className="container mx-auto px-4 text-center">
-              <p>© 2025 Sistema de Performance de Bombas - Desenvolvido para Eng</p>
+              <p className="text-sm">© 2025 Sistema de Performance de Bombas - Desenvolvido para Eng</p>
+              <p className="text-xs mt-1 text-gray-400">Powered by <span className="font-semibold text-blue-400">CS Analytics®</span></p>
             </div>
           </footer>
         )}
